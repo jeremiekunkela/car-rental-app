@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ajout d'une voiture</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="onSubmit()" #carForm="ngForm">
+    <!-- Champ Marque -->
+    <ion-item>
+      <ion-label position="stacked">Marque</ion-label>
+      <ion-input
+        type="text"
+        required
+        [(ngModel)]="carData.brand"
+        name="brand"
+        #brand="ngModel"
+        placeholder="Exemple : Toyota">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="brand.invalid && brand.touched">
+      La marque est obligatoire.
+    </ion-text>
+
+    <!-- Champ Modèle -->
+    <ion-item>
+      <ion-label position="stacked">Modèle</ion-label>
+      <ion-input
+        type="text"
+        required
+        [(ngModel)]="carData.model"
+        name="model"
+        #model="ngModel"
+        placeholder="Exemple : Corolla">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="model.invalid && model.touched">
+      Le modèle est obligatoire.
+    </ion-text>
+
+    <!-- Champ Plaque d'immatriculation -->
+    <ion-item>
+      <ion-label position="stacked">Plaque d'immatriculation</ion-label>
+      <ion-input
+        type="text"
+        required
+        [(ngModel)]="carData.licensePlate"
+        name="licensePlate"
+        #licensePlate="ngModel"
+        placeholder="Exemple : ABC-1234">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="licensePlate.invalid && licensePlate.touched">
+      La plaque d'immatriculation est obligatoire et doit contenir uniquement des lettres, chiffres et tirets.
+    </ion-text>
+
+    <!-- Photo avant -->
+    <ion-item>
+      <ion-label position="stacked">Photo avant</ion-label>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event, 'front')">
+    </ion-item>
+
+    <!-- Photo arrière -->
+    <ion-item>
+      <ion-label position="stacked">Photo arrière</ion-label>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event, 'back')">
+    </ion-item>
+
+    <!-- Bouton d'enregistrement -->
+    <ion-button expand="block" type="submit" [disabled]="!carForm.form.valid">
+      Enregistrer
+    </ion-button>
+  </form>
+</ion-content>

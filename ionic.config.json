@@ -1,0 +1,7 @@
+{
+  "name": "RentFleetManager",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

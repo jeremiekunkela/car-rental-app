@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <form [formGroup]="registerForm"  class="signup-container">
+    <ion-item>
+      <ion-label position="floating">Nom d'utilisateur</ion-label>
+      <ion-input type="text" formControlName="username"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('username')?.touched">
+      {{ getErrorMessage('username') }}
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('email')?.touched">
+      {{ getErrorMessage('email') }}
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Numéro de téléphone</ion-label>
+      <ion-input type="tel" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('phone')?.touched">
+      {{ getErrorMessage('phone') }}
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('password')?.touched">
+      {{ getErrorMessage('password') }}
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Confirmer le mot de passe</ion-label>
+      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.get('confirmPassword')?.touched">
+      {{ getErrorMessage('confirmPassword') }}
+    </ion-text>
+
+    <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+
+    <ion-button expand="full" shape="round" type="submit" [disabled]="registerForm.invalid" (click)="signUp()" class="custom-blue">
+      S'inscrire
+    </ion-button>
+
+    <div class="login-link">
+      <ion-text color="medium">Déjà inscrit ?</ion-text>
+      <a (click)="goToLogin()">Se connecter</a>
+    </div>
+  </form>
+</ion-content>
