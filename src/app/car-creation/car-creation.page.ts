@@ -36,7 +36,6 @@ export class CarCreationPage implements OnInit {
     this.router.navigate(['/car-list']);
   }
 
-  // Sélectionner une photo depuis la galerie
   onFileSelected(event: Event, type: 'front' | 'back') {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -45,11 +44,6 @@ export class CarCreationPage implements OnInit {
   }
 
   async onSubmit() {
-    // if (!this.validateLicensePlate(this.carData.licensePlate)) {
-    //   alert('La plaque d\'immatriculation est invalide. Utilisez uniquement des lettres, chiffres et tirets.');
-    //   return;
-    // }
-
     const db = getFirestore();
     const storage = getStorage();
 
