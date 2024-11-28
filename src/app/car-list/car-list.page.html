@@ -1,34 +1,55 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Liste des voitures</ion-title>
+  <ion-toolbar style="border-bottom: 0;">
+    <ion-img src="assets/logo.png" alt="Logo" class="app-logo"></ion-img>
   </ion-toolbar>
+  
+  <ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Liste des voitures</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <ion-button expand="full" color="primary" (click)="goToCreateCarPage()">
-    Ajouter une voiture
-  </ion-button>
+  <ion-searchbar
+    [(ngModel)]="searchText"
+    (ionInput)="filterCars()"
+    debounce="500"
+    placeholder="Rechercher par marque ou modèle">
+  </ion-searchbar>
 
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let car of carImages">
-        <ion-card>
-          <img [src]="car.url" [alt]="car.name" />
-          <ion-card-header>
-            <ion-card-title>
-              {{ getCarDetail(car.name, 'brand') }} - 
-              {{ getCarDetail(car.name, 'model') }} - 
-              {{ getCarDetail(car.name, 'licensePlate') }}
-            </ion-card-title>
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let car of filteredCars">
+        <ion-card (click)="goToCarDetail(car)" class="car-card">
+          <div class="car-image-container">
+            <img [src]="car.url" [alt]="car.name" />
+          </div>
+
+          <ion-card-header class="card-header">
+            <div class="car-title">
+              <div class="car-brand">
+                <span>{{ getCarDetail(car.name, 'brand') }}</span>
+              </div>
+              <div class="car-model">
+                <strong>{{ getCarDetail(car.name, 'model') }}</strong>
+              </div>
+            </div>
           </ion-card-header>
+
+          <div class="immatriculation-chip-container">
+            <ion-chip color="primary" class="immatriculation-chip">
+              <ion-label>{{ getCarDetail(car.name, 'licensePlate') }}</ion-label>
+            </ion-chip>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="goToCreateCarPage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

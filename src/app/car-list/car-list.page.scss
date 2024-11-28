@@ -1,25 +1,84 @@
-ion-card {
+/* Style global des cartes */
+.car-card {
   margin: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-bottom: 2px solid #ddd;
-    border-radius: 8px 8px 0 0;
-  }
-
-  ion-card-title {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 10px 0;
-    color: #333;
-  }
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
 }
 
-ion-grid {
-  margin-top: 20px;
+/* Conteneur d'image avec image centrée */
+.car-image-container {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.car-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Style du header de la carte (Marque et Modèle en haut à gauche) */
+.card-header {
+  padding: 15px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.car-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.car-brand {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.car-model {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* Conteneur et style pour la chip d'immatriculation */
+.immatriculation-chip-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.immatriculation-chip {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  background-color: #194d7e; /* Couleur bleue pour l'immatriculation */
+}
+
+/* Style du bouton flottant */
+ion-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+ion-fab-button {
+  --background: #3880ff; /* Couleur de fond bleue */
+  --border-radius: 50%;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre sur le bouton */
+}
+
+ion-fab-button ion-icon {
+  font-size: 28px;
+  color: white;
 }

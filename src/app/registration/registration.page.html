@@ -1,55 +1,79 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Inscription</ion-title>
+    <ion-img src="assets/logo.png" alt="Logo" class="app-logo"></ion-img>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <form [formGroup]="registerForm" class="signup-container">
 
-  <form [formGroup]="registerForm"  class="signup-container">
-    <ion-item>
-      <ion-label position="floating">Nom d'utilisateur</ion-label>
-      <ion-input type="text" formControlName="username"></ion-input>
+    <ion-item lines="none">
+      <ion-input 
+        type="text" 
+        formControlName="username" 
+        fill="solid" 
+        label="Nom d'utilisateur" 
+        labelPlacement="floating"
+        helperText="Choisissez un nom unique"
+        errorText="Le nom est obligatoire et doit contenir au moins 3 caractères"
+      ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="registerForm.get('username')?.touched">
-      {{ getErrorMessage('username') }}
-    </ion-text>
 
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+    <ion-item lines="none">
+      <ion-input 
+        type="email" 
+        formControlName="email" 
+        fill="solid" 
+        label="Email" 
+        labelPlacement="floating"
+        helperText="Entrez une adresse email valide"
+        errorText="Email invalide"
+      ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="registerForm.get('email')?.touched">
-      {{ getErrorMessage('email') }}
-    </ion-text>
 
-    <ion-item>
-      <ion-label position="floating">Numéro de téléphone</ion-label>
-      <ion-input type="tel" formControlName="phone"></ion-input>
+    <ion-item lines="none">
+      <ion-input 
+        type="tel" 
+        formControlName="phone" 
+        fill="solid" 
+        label="Numéro de téléphone" 
+        labelPlacement="floating"
+        helperText="Entrez un numéro de téléphone valide"
+        errorText="Numéro invalide"
+      ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="registerForm.get('phone')?.touched">
-      {{ getErrorMessage('phone') }}
-    </ion-text>
 
-    <ion-item>
-      <ion-label position="floating">Mot de passe</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+    <ion-item lines="none">
+      <ion-input 
+        type="password" 
+        formControlName="password" 
+        fill="solid" 
+        label="Mot de passe" 
+        labelPlacement="floating"
+        helperText="Le mot de passe doit contenir au moins 6 caractères"
+        errorText="Mot de passe invalide"
+      ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="registerForm.get('password')?.touched">
-      {{ getErrorMessage('password') }}
-    </ion-text>
 
-    <ion-item>
-      <ion-label position="floating">Confirmer le mot de passe</ion-label>
-      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+    <ion-item lines="none">
+      <ion-input 
+        type="password" 
+        formControlName="confirmPassword" 
+        fill="solid" 
+        label="Confirmer le mot de passe" 
+        labelPlacement="floating"
+        helperText="Répétez le mot de passe pour confirmation"
+        errorText="Les mots de passe ne correspondent pas"
+      ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="registerForm.get('confirmPassword')?.touched">
-      {{ getErrorMessage('confirmPassword') }}
-    </ion-text>
 
-    <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
-
-    <ion-button expand="full" shape="round" type="submit" [disabled]="registerForm.invalid" (click)="signUp()" class="custom-blue">
+    <ion-button 
+      expand="full" 
+      shape="round" 
+      type="submit" 
+      [disabled]="registerForm.invalid" 
+      (click)="signUp()" 
+      class="custom-blue">
       S'inscrire
     </ion-button>
 

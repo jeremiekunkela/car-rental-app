@@ -43,7 +43,42 @@ ion-button.custom-blue {
   }  
 
   .custom-toast {
-    color: white; 
-    font-family: Roboto, sans-serif; 
     font-size: 16px; 
+    border-radius: 20px;
   }
+
+
+  ion-fab-button {
+    --background: #0095f6;
+    --background-activated: #0095f6;
+    --background-hover: #0095f6;
+    --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --color: white;
+  }
+
+  .app-logo {
+    height: 100px; /* Ajuste la taille du logo */
+    width: auto;  /* Garde les proportions du logo */
+    margin-left: 10px; /* Éventuellement ajouter un espacement à gauche */
+  }
+  
+  .page-title {
+    text-align: center; /* Centrer le titre */
+    margin-left: 20px; /* Légèrement décaler à droite pour plus d'espace */
+  }
+  
+ion-toolbar {
+  --border-width: 0;
+  --border-color: transparent;
+  --border-style: none;
+}
+
+ion-progress-bar {
+  --background: #e0e0e0;
+  --progress-background: #3b82f6; /* Couleur bleue pour la barre de progression */
+  height: 4px; /* Hauteur de la barre */
+}
+
+ion-app {
+  background-color: #f8f8f8; /* Coule de fond de l'application */ 
+}

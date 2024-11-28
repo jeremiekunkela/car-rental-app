@@ -1,13 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>car-detail</ion-title>
+    <ion-title>Détails de la voiture</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">car-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <img [src]="frontImageUrl" alt="Image avant de {{ carName }}" />
+    <img *ngIf="backImageUrl" [src]="backImageUrl" alt="Image arrière de {{ carName }}" />
+    <ion-card-header>
+      <ion-card-title>{{ carName }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 </ion-content>

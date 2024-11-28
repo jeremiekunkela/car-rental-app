@@ -1,34 +1,44 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Connexion</ion-title>
+  <ion-toolbar style="border-bottom: 0">
+    <ion-img src="assets/logo.png" alt="Logo" class="app-logo"></ion-img>
   </ion-toolbar>
 </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-container">
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" formControlName="email" required></ion-input>
-      </ion-item>
-      <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-        {{ getErrorMessage('email') }}
-      </ion-text>
+<ion-content [fullscreen]="true">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-container">
+    
+    <ion-item lines="none">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input 
+        type="email" 
+        formControlName="email" 
+        required
+        [errorText]="getErrorMessage('email')">
+      </ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Mot de passe</ion-label>
-        <ion-input type="password" formControlName="password" required></ion-input>
-      </ion-item>
-      <ion-text color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-        {{ getErrorMessage('password') }}
-      </ion-text>
-
-      <ion-button expand="full" type="submit" [disabled]="loginForm.invalid" shape="round" class="custom-blue">Se connecter</ion-button>
-
-      <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
-
-      <div class="register-link">
-        <ion-text color="medium">Pas encore inscrit ?</ion-text>
-        <a (click)="goToRegistration()">Créer un compte</a>
-      </div>
-    </form>
+    <ion-item lines="none">
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input 
+        type="password" 
+        formControlName="password" 
+        required
+        [errorText]="getErrorMessage('password')">
+      </ion-input>
+    </ion-item>
+    
+    <ion-button 
+      expand="full" 
+      type="submit" 
+      [disabled]="loginForm.invalid" 
+      shape="round" 
+      class="custom-blue">
+      Se connecter
+    </ion-button>
+    
+    <div class="register-link">
+      <ion-text color="medium">Pas encore inscrit ?</ion-text>
+      <a (click)="goToRegistration()">Créer un compte</a>
+    </div>
+  </form>
 </ion-content>

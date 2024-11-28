@@ -42,7 +42,6 @@ export class RegistrationPage implements OnInit {
   ngOnInit() {}
 
   goToLogin() {
-    console.log('goToLogin');
     this.router.navigate(['login']);
   }
 
@@ -79,15 +78,13 @@ export class RegistrationPage implements OnInit {
         this.goToLogin();
       }
     } catch (error: unknown) {
-      console.log('error', error);
       if(error instanceof FirebaseError && error.code === 'auth/email-already-in-use') {
         this.errorMessage = 'Cet email est déjà utilisé.';
-        this.presentToast('Cet email est déjà utilisé.', 'warning'); 
+        this.presentToast('Cet email est déjà utilisé.', 'warning');
         return;
       }
       this.errorMessage = 'Échec de l\'inscription. Veuillez vérifier les informations saisies.';
-      this.presentToast('Échec de l\'inscription. Veuillez vérifier les informations saisies.', 'danger'); 
-      console.error(error);
+      this.presentToast('Erreur du serveur. Veuillez réessayer plus tard.', 'danger');
     }
   }
 
@@ -95,9 +92,8 @@ export class RegistrationPage implements OnInit {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000, 
-      color: color,  
-      position: 'top',  
-      cssClass: 'custom-toast' 
+      position: 'bottom',  
+      cssClass: 'custom-toast',  
     });
     toast.present();
   }

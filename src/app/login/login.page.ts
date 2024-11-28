@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationService, IUser } from '../services/authentication/auth.service';
 import { Router } from '@angular/router';
 import { ToastController } from "@ionic/angular";
+import { FirebaseError } from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -27,13 +28,6 @@ export class LoginPage implements OnInit {
   });
 
   errorMessage: string = '';
-
-
-  user: Partial<IUser> = {
-    email: '' as string ,
-    password: '' as string,
-  };
-  
 
   constructor(
     private authService: AuthenticationService,
@@ -84,18 +78,21 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/car-list']);
       }
     } catch (error) {
-      this.presentToast('Échec de la connexion. Veuillez vérifier vos identifiants.', 'warning');
-      console.error(error);
+      if (error instanceof FirebaseError && error.code === 'auth/invalid-credential') {
+        this.presentToast('Utilisateur inconnu. Veuillez vérifier vos identifiants.', 'warning');
+        return;
+      }
+    
+      this.presentToast('Erreur du serveur. Veuillez réessayer plus tard.', 'danger');
     }
   }
   
   async presentToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 10000, 
-      color: color,  
-      position: 'top',  
-      cssClass: 'custom-toast'  
+      duration: 2000,
+      position: 'bottom',  
+      cssClass: 'custom-toast',  
     });
     toast.present();
   }
